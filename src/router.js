@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import PcRoutes from './pc-router'
+import MeRoutes from './me-router'
 
 Vue.use(Router)
 
@@ -9,9 +10,16 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: Home
+      path: '/pc',
+      name: 'pc-home',
+      component: () => import('./views/pc/PcApp.vue'),
+      children: PcRoutes
+    },
+    {
+      path: '/me',
+      name: 'me-home',
+      component: () => import('./views/me/MeApp.vue'),
+      children: MeRoutes
     },
     {
       path: '/about',
